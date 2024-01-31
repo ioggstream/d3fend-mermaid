@@ -17,6 +17,7 @@ import theme from './themes/index.js';
 import c4 from './diagrams/c4/styles.js';
 import classDiagram from './diagrams/class/styles.js';
 import flowchart from './diagrams/flowchart/styles.js';
+import d3fend from './diagrams/d3fend/styles.js';
 import flowchartElk from './diagrams/flowchart/elk/styles.js';
 import er from './diagrams/er/styles.js';
 import git from './diagrams/git/styles.js';
@@ -96,6 +97,7 @@ describe('styles', () => {
         sequence,
         state,
         timeline,
+        d3fend,
       })) {
         test(`should return a valid style for diagram ${diagramId} and theme ${themeId}`, async () => {
           const { default: getStyles, addStylesForDiagram } = await import('./styles.js');

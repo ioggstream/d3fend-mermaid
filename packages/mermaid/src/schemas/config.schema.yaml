@@ -49,6 +49,7 @@ required:
   - gitGraph
   - c4
   - sankey
+  - d3fend
 properties:
   theme:
     description: |
@@ -216,6 +217,8 @@ properties:
     $ref: '#/$defs/C4DiagramConfig'
   sankey:
     $ref: '#/$defs/SankeyDiagramConfig'
+  d3fend:
+    $ref: '#/$defs/D3fendDiagramConfig'
   dompurifyConfig:
     title: DOM Purify Configuration
     description: Configuration options to pass to the `dompurify` library.
@@ -226,6 +229,7 @@ properties:
   fontSize:
     type: number
     default: 16
+
 
 $defs: # JSON Schema definition (maybe we should move these to a separate file)
   BaseDiagramConfig:
@@ -1863,6 +1867,97 @@ $defs: # JSON Schema definition (maybe we should move these to a separate file)
       messageFont: { '$ref': '#/$defs/FontCalculator' }
       noteFont: { '$ref': '#/$defs/FontCalculator' }
       actorFont: { '$ref': '#/$defs/FontCalculator' }
+
+  D3fendDiagramConfig:
+    title: D3fend Diagram Config
+    allOf: [{ $ref: '#/$defs/BaseDiagramConfig' }]
+    description: The object containing configurations specific for d3fend
+    type: object
+    unevaluatedProperties: false
+    required:
+      - titleTopMargin
+      - subGraphTitleMargin
+      - diagramPadding
+      - htmlLabels
+      - nodeSpacing
+      - rankSpacing
+      - curve
+      - useMaxWidth
+      - defaultRenderer
+      - wrappingWidth
+    properties:
+      titleTopMargin:
+        $ref: '#/$defs/GitGraphDiagramConfig/properties/titleTopMargin'
+        default: 25
+      subGraphTitleMargin:
+        description: |
+          Defines a top/bottom margin for subgraph titles
+        type: object
+        properties:
+          top:
+            type: integer
+            minimum: 0
+          bottom:
+            type: integer
+            minimum: 0
+        default:
+          top: 0
+          bottom: 0
+      arrowMarkerAbsolute:
+        type: boolean # TODO, is this actually used here (it has no default value but was in types)
+      diagramPadding:
+        $ref: '#/$defs/ErDiagramConfig/properties/diagramPadding'
+        default: 8
+      htmlLabels:
+        description: |
+          Flag for setting whether or not a html tag should be used for rendering labels on the edges.
+        type: boolean
+        default: true
+      nodeSpacing:
+        description: |
+          Defines the spacing between nodes on the same level
+
+          Pertains to horizontal spacing for TB (top to bottom) or BT (bottom to top) graphs,
+          and the vertical spacing for LR as well as RL graphs.
+        type: integer
+        default: 50
+        minimum: 0
+      rankSpacing:
+        description: |
+          Defines the spacing between nodes on different levels
+
+          Pertains to horizontal spacing for TB (top to bottom) or BT (bottom to top) graphs,
+          and the vertical spacing for LR as well as RL graphs.
+        type: integer
+        default: 50
+        minimum: 0
+      curve:
+        description: |
+          Defines how mermaid renders curves for flowcharts.
+        type: string
+        enum: ['basis', 'linear', 'cardinal']
+        default: 'basis'
+        # Allow any string for typescript backwards compatibility (fix in Mermaid v10)
+        tsType: 'string | "basis" | "linear" | "cardinal"'
+      padding:
+        description: |
+          Represents the padding between the labels and the shape
+
+          **Only used in new experimental rendering.**
+        type: number
+        default: 15
+      defaultRenderer:
+        $ref: '#/$defs/StateDiagramConfig/properties/defaultRenderer'
+        default: dagre-wrapper
+      wrappingWidth:
+        description: |
+          Width of nodes where text is wrapped.
+
+          When using markdown strings the text ius wrapped automatically, this
+          value sets the max width of a text before it continues on a new line.
+        type: number
+        default: 200
+
 
   FlowchartDiagramConfig:
     title: Flowchart Diagram Config

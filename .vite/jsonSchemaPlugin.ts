@@ -25,6 +25,7 @@ const MERMAID_CONFIG_DIAGRAM_KEYS = [
   'gitGraph',
   'c4',
   'sankey',
+  'd3fend',
 ] as const;
 
 /**

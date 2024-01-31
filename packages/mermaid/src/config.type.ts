@@ -161,6 +161,7 @@ export interface MermaidConfig {
   gitGraph?: GitGraphDiagramConfig;
   c4?: C4DiagramConfig;
   sankey?: SankeyDiagramConfig;
+  d3fend?: D3fendDiagramConfig;
   dompurifyConfig?: DOMPurifyConfiguration;
   wrap?: boolean;
   fontSize?: number;
@@ -1405,6 +1406,79 @@ export interface SequenceDiagramConfig extends BaseDiagramConfig {
   messageFont?: FontCalculator;
   noteFont?: FontCalculator;
   actorFont?: FontCalculator;
+}
+/**
+ * The object containing configurations specific for d3fend
+ *
+ * This interface was referenced by `MermaidConfig`'s JSON-Schema
+ * via the `definition` "D3fendDiagramConfig".
+ */
+export interface D3FendDiagramConfig extends BaseDiagramConfig {
+  /**
+   * Margin top for the text over the diagram
+   */
+  titleTopMargin?: number;
+  /**
+   * Defines a top/bottom margin for subgraph titles
+   *
+   */
+  subGraphTitleMargin?: {
+    top?: number;
+    bottom?: number;
+  };
+  arrowMarkerAbsolute?: boolean;
+  /**
+   * The amount of padding around the diagram as a whole so that embedded
+   * diagrams have margins, expressed in pixels.
+   *
+   */
+  diagramPadding?: number;
+  /**
+   * Flag for setting whether or not a html tag should be used for rendering labels on the edges.
+   *
+   */
+  htmlLabels?: boolean;
+  /**
+   * Defines the spacing between nodes on the same level
+   *
+   * Pertains to horizontal spacing for TB (top to bottom) or BT (bottom to top) graphs,
+   * and the vertical spacing for LR as well as RL graphs.
+   *
+   */
+  nodeSpacing?: number;
+  /**
+   * Defines the spacing between nodes on different levels
+   *
+   * Pertains to horizontal spacing for TB (top to bottom) or BT (bottom to top) graphs,
+   * and the vertical spacing for LR as well as RL graphs.
+   *
+   */
+  rankSpacing?: number;
+  /**
+   * Defines how mermaid renders curves for flowcharts.
+   *
+   */
+  curve?: string | 'basis' | 'linear' | 'cardinal';
+  /**
+   * Represents the padding between the labels and the shape
+   *
+   * **Only used in new experimental rendering.**
+   *
+   */
+  padding?: number;
+  /**
+   * Decides which rendering engine that is to be used for the rendering.
+   *
+   */
+  defaultRenderer?: string | 'dagre-d3' | 'dagre-wrapper' | 'elk';
+  /**
+   * Width of nodes where text is wrapped.
+   *
+   * When using markdown strings the text ius wrapped automatically, this
+   * value sets the max width of a text before it continues on a new line.
+   *
+   */
+  wrappingWidth?: number;
 }
 /**
  * The object containing configurations specific for flowcharts

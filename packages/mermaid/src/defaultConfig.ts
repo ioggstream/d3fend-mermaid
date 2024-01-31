@@ -257,6 +257,10 @@ const config: RequiredDeep<MermaidConfig> = {
     // TODO: can we make this default to `true` instead?
     useMaxWidth: false,
   },
+  d3fend: {
+    ...defaultConfigJson.d3fend,
+    useWidth: undefined,
+  },
 };
 
 const keyify = (obj: any, prefix = ''): string[] =>
