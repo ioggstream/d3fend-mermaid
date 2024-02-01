@@ -1413,7 +1413,7 @@ export interface SequenceDiagramConfig extends BaseDiagramConfig {
  * This interface was referenced by `MermaidConfig`'s JSON-Schema
  * via the `definition` "D3fendDiagramConfig".
  */
-export interface D3FendDiagramConfig extends BaseDiagramConfig {
+export interface D3fendDiagramConfig extends BaseDiagramConfig {
   /**
    * Margin top for the text over the diagram
    */
