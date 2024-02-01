@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Mermaid Quick Flowchart Test Page</title>
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo="/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <style>
       div.mermaid {
         /* font-family: 'trebuchet ms', verdana, arial; */
@@ -104,29 +106,19 @@
         logLevel: 3,
         securityLevel: 'loose',
         flowchart: {
-          curve: 'basis'
-        }
+          curve: 'basis',
+        },
       });
     </script>
     <script>
       function testClick(nodeId) {
         console.log('clicked', nodeId);
-        let originalBgColor = document
-          .querySelector('body')
-          .style
-          .backgroundColor;
-        document
-          .querySelector('body')
-          .style
-          .backgroundColor = 'yellow';
+        let originalBgColor = document.querySelector('body').style.backgroundColor;
+        document.querySelector('body').style.backgroundColor = 'yellow';
         setTimeout(function () {
-          document
-            .querySelector('body')
-            .style
-            .backgroundColor = originalBgColor;
+          document.querySelector('body').style.backgroundColor = originalBgColor;
         }, 100);
       }
     </script>
   </body>
-
 </html>
