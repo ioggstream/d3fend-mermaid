@@ -12,6 +12,7 @@ import { interpolateToCurve, getStylesFromArray } from '../../../utils.js';
 import ELK from 'elkjs/lib/elk.bundled.js';
 import { getLineFunctionsWithOffset } from '../../../utils/lineWithOffset.js';
 import { addEdgeMarkers } from '../../../dagre-wrapper/edgeMarker.js';
+import { renderD3fendIcons } from '../d3fend.js';
 
 const elk = new ELK();
 
@@ -62,6 +63,7 @@ export const addVertices = async function (vert, svgId, root, doc, diagObj, pare
       // Use vertex id as text in the box if no text is provided by the graph definition
       let vertexText = vertex.text !== undefined ? vertex.text : vertex.id;
 
+      vertexText = renderD3fendIcons(vertexText);
       // We create a SVG label, either by delegating to addHtmlLabel or manually
       let vertexNode;
       const labelData = { width: 0, height: 0 };
@@ -177,7 +179,7 @@ export const addVertices = async function (vert, svgId, root, doc, diagObj, pare
         dir: vertex.dir,
         type: vertex.type,
         props: vertex.props,
-        padding: getConfig().flowchart.padding,
+        padding: getConfig().d3fend.padding,
       };
       let boundingBox;
       let nodeEl;
@@ -202,7 +204,7 @@ export const addVertices = async function (vert, svgId, root, doc, diagObj, pare
         // const bbox = vertexNode.getBBox();
         const { shapeSvg, bbox } = await labelHelper(nodes, node, undefined, true);
         labelData.width = bbox.width;
-        labelData.wrappingWidth = getConfig().flowchart.wrappingWidth;
+        labelData.wrappingWidth = getConfig().d3fend.wrappingWidth;
         labelData.height = bbox.height;
         labelData.labelNode = shapeSvg.node();
         node.labelData = labelData;
@@ -232,7 +234,7 @@ export const addVertices = async function (vert, svgId, root, doc, diagObj, pare
         // dir: vertex.dir,
         type: vertex.type,
         // props: vertex.props,
-        // padding: getConfig().flowchart.padding,
+        // padding: getConfig().d3fend.padding,
         // boundingBox,
         el: nodeEl,
         parent: parentLookupDb.parentById[vertex.id],
@@ -257,7 +259,7 @@ export const addVertices = async function (vert, svgId, root, doc, diagObj, pare
       //   type: vertex.type,
       //   dir: vertex.dir,
       //   props: vertex.props,
-      //   padding: getConfig().flowchart.padding,
+      //   padding: getConfig().d3fend.padding,
       //   parent: parentLookupDb.parentById[vertex.id],
       // });
     })
@@ -873,7 +875,7 @@ const drawNodes = (relX, relY, nodeArray, svg, subgraphsEl, diagObj, depth) => {
           .attr('width', node.width)
           .attr('height', node.height);
         const label = subgraphEl.insert('g').attr('class', 'label');
-        const labelCentering = getConfig().flowchart.htmlLabels ? node.labelData.width / 2 : 0;
+        const labelCentering = getConfig().d3fend.htmlLabels ? node.labelData.width / 2 : 0;
         label.attr(
           'transform',
           `translate(${node.labels[0].x + relX + node.x + labelCentering}, ${

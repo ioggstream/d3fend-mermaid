@@ -12,13 +12,13 @@ export const diagram = {
   renderer: flowRendererV2,
   styles: flowStyles,
   init: (cnf: MermaidConfig) => {
-    if (!cnf.flowchart) {
-      cnf.flowchart = {};
+    if (!cnf.d3fend) {
+      cnf.d3fend = {};
     }
-    cnf.flowchart.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+    cnf.d3fend.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
     // flowchart-v2 uses dagre-wrapper, which doesn't have access to flowchart cnf
     setConfig({ flowchart: { arrowMarkerAbsolute: cnf.arrowMarkerAbsolute } });
-    flowRendererV2.setConf(cnf.flowchart);
+    flowRendererV2.setConf(cnf.d3fend);
     flowDb.clear();
     flowDb.setGen('gen-2');
   },

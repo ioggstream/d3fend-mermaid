@@ -21,6 +21,7 @@ import timeline from '../diagrams/timeline/detector.js';
 import mindmap from '../diagrams/mindmap/detector.js';
 import sankey from '../diagrams/sankey/sankeyDetector.js';
 import d3fend from '../diagrams/d3fend/flowDetector-v2.js';
+import d3fendElk from '../diagrams/d3fend/elk/detector.js';
 import { registerLazyLoadedDiagrams } from './detectType.js';
 import { registerDiagram } from './diagramAPI.js';
 
@@ -89,6 +90,7 @@ export const addDiagrams = () => {
     quadrantChart,
     sankey,
     xychart,
+    d3fendElk,
     d3fend,
   );
 };
