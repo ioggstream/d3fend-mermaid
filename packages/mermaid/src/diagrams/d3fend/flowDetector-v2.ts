@@ -1,7 +1,7 @@
 import type { DiagramDetector, DiagramLoader } from '../../diagram-api/types.js';
 import type { ExternalDiagramDefinition } from '../../diagram-api/types.js';
 
-const id = 'flowchart-v2';
+const id = 'd3fend';
 
 const detector: DiagramDetector = (txt, config) => {
   if (
@@ -15,7 +15,7 @@ const detector: DiagramDetector = (txt, config) => {
   if (/^\s*graph/.test(txt) && config?.flowchart?.defaultRenderer === 'dagre-wrapper') {
     return true;
   }
-  return /^\s*flowchart/.test(txt);
+  return /^\s*d3fend/.test(txt);
 };
 
 const loader: DiagramLoader = async () => {
