@@ -230,7 +230,6 @@ properties:
     type: number
     default: 16
 
-
 $defs: # JSON Schema definition (maybe we should move these to a separate file)
   BaseDiagramConfig:
     # TODO: More config needs to be moved here
@@ -1957,7 +1956,6 @@ $defs: # JSON Schema definition (maybe we should move these to a separate file)
           value sets the max width of a text before it continues on a new line.
         type: number
         default: 200
-
 
   FlowchartDiagramConfig:
     title: Flowchart Diagram Config

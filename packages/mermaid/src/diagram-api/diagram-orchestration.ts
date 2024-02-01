@@ -91,6 +91,6 @@ export const addDiagrams = () => {
     sankey,
     xychart,
     d3fendElk,
-    d3fend,
+    d3fend
   );
 };

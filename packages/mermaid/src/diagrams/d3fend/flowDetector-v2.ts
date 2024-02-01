@@ -6,10 +6,7 @@ const id = 'd3fend';
 
 const detector: DiagramDetector = (txt, config) => {
   return false;
-  if (
-    config?.d3fend?.defaultRenderer === 'dagre-d3' ||
-    config?.d3fend?.defaultRenderer === 'elk'
-  ) {
+  if (config?.d3fend?.defaultRenderer === 'dagre-d3' || config?.d3fend?.defaultRenderer === 'elk') {
     log.warn('d3fend detector returning false', txt, config?.flowchart?.defaultRenderer);
     return false;
   }
