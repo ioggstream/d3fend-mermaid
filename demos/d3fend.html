@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Mermaid Quick Flowchart Test Page</title>
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
       div.mermaid {
         /* font-family: 'trebuchet ms', verdana, arial; */
@@ -22,22 +23,30 @@
     ---
     d3fend LR
 
+      A[Foo d3f:WebServerApplication]
+      B[Bar fa:fa-user d3f:WebServerApplication]
+      C[baz fab:fa-google bar]
       A --> B --> C
 
     </pre>
     <hr />
 
-    <h3>flowchart</h3>
-    <pre cla ss="mermaid">
-    d3fend TD
-      accTitle: What to buy
-      accDescr: Options of what to buy with Christmas money
-      A[Christmas] -->|Get money| B(Go shopping)
-      B --> C{Let me thinksssssx<br/>sssssssssssssssssssuuu<br />tttsssssssssssssssssssssss}
-      C -->|One| D[Laptop]
-      C -->|Two| E[iPhone]
-      C -->|Three| F[Car]
-  </pre>
+  <body>
+    <h1>Comparison "graph vs. flowchart"</h1>
+    <h2>Sample 1</h2>
+    <h3>graph</h3>
+    <pre class="mermaid">
+    ---
+    title: This is a complicated flow
+    ---
+    flowchart-elk LR
+
+      A[Foo d3f:WebServerApplication]
+      B[Bar fa:fa-user]
+      C[baz fab:fa-google bar]
+      A --> B --> C
+
+    </pre>
 
     <h1 id="link-clicked">Anchor for "link-clicked" test</h1>
 
