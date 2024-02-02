@@ -1,4 +1,6 @@
 import { log } from '../../logger.js';
+import { D3FEND_DATA } from './d3fendData.js';
+
 
 const ICON_MAP = {
   'd3f:EncryptionAlgorithm': '\\ud83d\\udd10',
@@ -49,7 +51,7 @@ const ICON_MAP = {
   'd3f:PhysicalLocation': 'fa:fa-building',
   'd3f:PrivateKey': 'fa:fa-key',
   'd3f:PrivilegedUserAccount': 'fa:fa-user-plus',
-  'd3f:Process': '\\u2699\\ufe0f',
+  'd3f:Process': '\u2699\ufe0f',
   'd3f:PublicKey': 'fa:fa-key',
   'd3f:RDPSession': 'fa:fa-desktop fa:fa-lock',
   'd3f:ReverseProxyServer': 'fab:fa-uncharted',
@@ -76,22 +78,40 @@ const ICON_MAP = {
   'd3f:WirelessRouter': 'fa:fa-wifi',
 };
 
+
+function replaceAfterPosition(str, position, searchValue, replaceValue) {
+    let firstPart = str.substring(0, position);
+    let secondPart = str.substring(position);
+    secondPart = secondPart.replace(searchValue, replaceValue);
+    return firstPart + secondPart;
+}
+
+function createTooltip(needle) {
+  const icon = ICON_MAP[needle] || needle;
+  let url = ''; // default value
+  if (D3FEND_DATA["D3F_DIGITAL_ARTIFACTS"].includes(needle)) {
+    url = `https://next.d3fend.mitre.org/dao/artifact/${needle}/`;
+  }
+  else if (D3FEND_DATA["D3F_DEFENSIVE_TECHNIQUES"].includes(needle)) {
+    url = `https://next.d3fend.mitre.org/dao/technique/${needle}/`;
+  }
+  return `<a title='${needle}' href='${url}' target='_blank' rel='noopener noreferrer'>${icon}</a>`;
+}
+
+
 export const renderD3fendIcons = function (text) {
-  /*     const iconMap = {
-            "d3f:SoftwarePackage": "[fa:fa-box fa:fa-box-archive]",
-            "d3f:WebServerApplication": "{fab:fa-whmcs}",
-        } */
   let matches = text.match(/d3f:\w+/g);
-  log.warn('renderD3fendIcons', text, matches);
+  log.debug('renderD3fendIcons', text, matches);
+  let position = 0;
   if (matches) {
     matches.forEach((needle) => {
-      text = text.replace(
-        needle,
-        `<a title='${needle}' target='_blank' rel='noopener noreferrer'>${ICON_MAP[needle]}</a>`
-      );
-      log.warn('found', needle, text);
+      let replacement = createTooltip(needle);
+      text = replaceAfterPosition(text, position,
+        needle, replacement);
+      position += replacement.length - needle.length;
+      log.debug('found', needle, text);
     });
   }
-  log.warn('new text', text);
+  log.debug('new text', text);
   return text;
 };

@@ -29,7 +29,13 @@
       A[Foo d3f:WebServerApplication]
       B[Bar fa:fa-user d3f:WebServerApplication]
       C[baz fab:fa-google bar]
-      A --> B --> C
+      D[webapp d3f:WebServerApplication with a d3f:Database and a d3f:WebServerApplication ]
+      E[(db d3f:Database)]
+      F[Untracked d3f:DigitalArtifact]
+      A-->B; 
+      A-->C; 
+      B-->D; 
+      C-->E;
 
     </pre>
     <hr />
