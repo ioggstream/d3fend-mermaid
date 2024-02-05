@@ -3,6 +3,7 @@ import { log } from '../logger.js';
 import { getConfig } from '../diagram-api/diagramAPI.js';
 import { evaluate } from '../diagrams/common/common.js';
 import { decodeEntities } from '../utils.js';
+import { renderD3fendIcons } from './d3fend.js';
 
 /**
  * @param dom
@@ -56,6 +57,7 @@ const createLabel = (_vertexText, style, isTitle, isNode) => {
   if (evaluate(getConfig().flowchart.htmlLabels)) {
     // TODO: addHtmlLabel accepts a labelStyle. Do we possibly have that?
     vertexText = vertexText.replace(/\\n|\n/g, '<br />');
+    vertexText = renderD3fendIcons(vertexText);
     log.debug('vertexText' + vertexText);
     const node = {
       isNode,
