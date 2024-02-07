@@ -1,6 +1,6 @@
 {
-  "name": "mermaid",
-  "version": "10.8.0",
+  "name": "d3fend-mermaid",
+  "version": "10.8.637",
   "description": "Markdown-ish syntax for generating flowcharts, sequence diagrams, class diagrams, gantt charts and git graphs.",
   "type": "module",
   "module": "./dist/mermaid.core.mjs",
@@ -44,9 +44,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mermaid-js/mermaid"
+    "url": "https://github.com/ioggstream/d3fend-mermaid"
   },
-  "author": "Knut Sveidqvist",
+  "author": "Roberto Polli",
   "license": "MIT",
   "standard": {
     "ignore": [
