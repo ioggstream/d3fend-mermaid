@@ -11,6 +11,7 @@ import { markdownToHTML, markdownToLines } from '../rendering-util/handle-markdo
 import { decodeEntities } from '../utils.js';
 import { splitLineToFitWidth } from './splitText.js';
 import type { MarkdownLine, MarkdownWord } from './types.js';
+import { renderD3fendIcons } from './d3fend.js';
 
 function applyStyle(dom, styleFn) {
   if (styleFn) {
@@ -220,7 +221,7 @@ export const createText = async (
   if (useHtmlLabels) {
     // TODO: addHtmlLabel accepts a labelStyle. Do we possibly have that?
 
-    const htmlText = markdownToHTML(text, config);
+    const htmlText = markdownToHTML(renderD3fendIcons(text), config);
     const decodedReplacedText = replaceIconSubstring(decodeEntities(htmlText));
 
     //for Katex the text could contain escaped characters, \\relax that should be transformed to \relax
